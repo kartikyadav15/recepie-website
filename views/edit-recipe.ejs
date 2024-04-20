@@ -1,0 +1,59 @@
+<!-- edit-recipe.ejs -->
+<div class="row justify-content-center">
+<div class="col-8">
+<form action="/update/<%= recipe._id %>" method="POST" enctype="multipart/form-data">
+  <!-- Recipe Name -->
+  <div class=" col g-3">
+  <div class="col-12">
+    <label for="recipeName" class="form-label">Recipe Name</label>
+    <input type="text" class="form-control" id="recipeName" name="recipeName" value="<%= recipe.name %>" required>
+  </div>
+
+  <!-- Description -->
+  <div class="col-12">
+    <label for="recipeDescription" class="form-label">Description</label>
+    <textarea class="form-control" id="recipeDescription" name="recipeDescription" rows="4" required><%= recipe.description %></textarea>
+  </div>
+
+  <!-- Email -->
+  <div class="col-12">
+    <label for="recipeEmail" class="form-label">Email</label>
+    <input type="email" class="form-control" id="recipeEmail" name="recipeEmail" value="<%= recipe.email %>" required>
+  </div>
+
+  <!-- Ingredients -->
+  <div class="col-12">
+    <label for="recipeIngredients" class="form-label">Ingredients</label>
+    <textarea class="form-control" id="recipeIngredients" name="recipeIngredients" rows="4" required><%= recipe.ingredients.join("\n") %></textarea>
+  </div>
+
+  <!-- Category -->
+  <div class="col-12">
+    <label for="recipeCategory" class="form-label">Category</label>
+    <select class="form-select" id="recipeCategory" name="recipeCategory" required>
+      <option value="" disabled>Select Category</option>
+      <option value="Thai" <%= recipe.category === 'Thai' ? 'selected' : '' %>>Thai</option>
+      <option value="American" <%= recipe.category === 'American' ? 'selected' : '' %>>American</option>
+      <option value="Chinese" <%= recipe.category === 'Chinese' ? 'selected' : '' %>>Chinese</option>
+      <option value="Mexican" <%= recipe.category === 'Mexican' ? 'selected' : '' %>>Mexican</option>
+      <option value="Indian" <%= recipe.category === 'Indian' ? 'selected' : '' %>>Indian</option>
+    </select>
+  </div>
+
+  <!-- Current Image -->
+  <div class="col-12">
+    <label>Current Image</label>
+    <img src="/uploads/<%= recipe.image %>" class="img-fluid rounded" alt="<%= recipe.name %>" style="max-height: 200px;">
+  </div>
+
+  <!-- New Image Upload -->
+  <div class="col-12">
+    <label for="recipeImage" class="form-label">Upload New Image</label>
+    <input type="file" class="form-control" id="recipeImage" name="recipeImage">
+  </div>
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary">Update Recipe</button>
+</div>
+</form>
+</div>
+<div class="row justify-content-center">
